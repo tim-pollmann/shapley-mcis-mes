@@ -1,6 +1,6 @@
 from typing import override
 
-from shapley_mcis_mes.interfaces import GameInterface
+from shapley_mcis_mes.utils.interfaces import GameInterface
 
 
 class BaseGame(GameInterface):

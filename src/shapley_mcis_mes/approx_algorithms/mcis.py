@@ -9,7 +9,7 @@ from shapley_mcis_mes.approx_algorithms.utils.check_number_of_samples_used impor
 from shapley_mcis_mes.exact_algorithms.utils.powerset_iterator import (
     powerset_iterator,
 )
-from shapley_mcis_mes.interfaces import ApproxAlgorithmInterface, GameInterface
+from shapley_mcis_mes.utils.interfaces import ApproxAlgorithmInterface, GameInterface
 
 
 class MCIS(ApproxAlgorithmInterface):

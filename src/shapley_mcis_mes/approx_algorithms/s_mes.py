@@ -5,7 +5,7 @@ import numpy as np
 from shapley_mcis_mes.approx_algorithms.utils.check_number_of_samples_used import (
     check_number_of_samples_used,
 )
-from shapley_mcis_mes.interfaces import ApproxAlgorithmInterface, GameInterface
+from shapley_mcis_mes.utils.interfaces import ApproxAlgorithmInterface, GameInterface
 
 
 class SMES(ApproxAlgorithmInterface):

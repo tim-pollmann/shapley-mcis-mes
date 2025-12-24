@@ -6,7 +6,7 @@ import numpy as np
 from shapley_mcis_mes.exact_algorithms.utils.powerset_iterator import (
     powerset_iterator,
 )
-from shapley_mcis_mes.interfaces import GameInterface
+from shapley_mcis_mes.utils.interfaces import GameInterface
 
 
 def brute_force_calculation_via_sum(game: GameInterface) -> np.ndarray[float]:

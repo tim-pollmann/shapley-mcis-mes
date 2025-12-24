@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import mean_squared_error
 
-from shapley_mcis_mes.interfaces import ApproxAlgorithmInterface, GameInterface
+from shapley_mcis_mes.utils.interfaces import ApproxAlgorithmInterface, GameInterface
 
 
 def run_comparison(

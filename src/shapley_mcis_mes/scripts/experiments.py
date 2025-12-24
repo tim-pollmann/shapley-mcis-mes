@@ -13,10 +13,10 @@ from shapley_mcis_mes.games.explainability_game import (
     WineRFGame,
 )
 from shapley_mcis_mes.games.weighted_voting_game import CustomWeightedVotingGame
-from shapley_mcis_mes.interfaces import ApproxAlgorithmInterface
 from shapley_mcis_mes.scripts.utils.run_comparison import run_comparison
 from shapley_mcis_mes.scripts.utils.show_comparison import show_comparison
 from shapley_mcis_mes.scripts.utils.update_plt_params import update_plt_params
+from shapley_mcis_mes.utils.interfaces import ApproxAlgorithmInterface
 
 ALGORITHMS: list[ApproxAlgorithmInterface] = [OS, MES, SMES, MCIS, SMCIS]
 
