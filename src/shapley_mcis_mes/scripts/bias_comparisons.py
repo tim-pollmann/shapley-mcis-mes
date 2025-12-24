@@ -11,7 +11,7 @@ _ALGORITHMS: list[ApproxAlgorithmInterface] = [OS, MES, SMES]
 _PLAYER: int = 0
 
 
-def ag() -> None:
+def default() -> None:
     experiment_name = "bias_comparison"
     game = CustomAirportGameSmall()
     ground_truth_shapley_values = game.shapley_values

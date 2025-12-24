@@ -19,7 +19,7 @@ def plot_bias_comparison(experiment_name: str, player: int) -> None:
 
     plt.ticklabel_format(style="sci", axis="y", scilimits=(-1, 1))
     plt.xlabel(r"overall sample budget $T$")
-    plt.ylabel(r"bias of $\hat{\phi}_" + f"{player}$")
+    plt.ylabel(r"bias of $\hat{\phi}_" + f"{player+1}$")
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
