@@ -24,8 +24,9 @@ development = [
 ]
 
 [project.scripts]
-run-ag = "shapley_mcis_mes.scripts.experiments:ag"
-run-wvg = "shapley_mcis_mes.scripts.experiments:wvg"
-run-diabetes = "shapley_mcis_mes.scripts.experiments:diabetes"
-run-housing = "shapley_mcis_mes.scripts.experiments:housing"
-run-wine = "shapley_mcis_mes.scripts.experiments:wine"
+run-ag-mse-comparison = "shapley_mcis_mes.scripts.mse_comparisons:ag"
+run-wvg-mse-comparison = "shapley_mcis_mes.scripts.mse_comparisons:wvg"
+run-diabetes-mse-comparison = "shapley_mcis_mes.scripts.mse_comparisons:diabetes"
+run-housing-mse-comparison = "shapley_mcis_mes.scripts.mse_comparisons:housing"
+run-wine-mse-comparison = "shapley_mcis_mes.scripts.mse_comparisons:wine"
+run-ag-bias-comparison = "shapley_mcis_mes.scripts.bias_comparisons:ag"

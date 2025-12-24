@@ -1,10 +1,14 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
+from shapley_mcis_mes.scripts.utils.update_plt_params import update_plt_params
 
-def show_comparison(
+
+def plot_mse_comparison(
     experiment_name: str, yticks: list[float] = None, ylim: float = None
 ) -> None:
+    update_plt_params()
+
     df = pd.read_csv(f"data/{experiment_name}.csv", index_col="tau")
 
     plt.figure()

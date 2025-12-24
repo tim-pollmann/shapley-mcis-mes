@@ -45,7 +45,7 @@ class AirportGame(BaseGame):
         return shapley_values
 
 
-class CustomAirportGame(AirportGame):
+class CustomAirportGameLarge(AirportGame):
     def __init__(self) -> None:
         costs = (
             [1] * 8
@@ -59,4 +59,10 @@ class CustomAirportGame(AirportGame):
             + [9] * 10
             + [10] * 10
         )
+        super().__init__(costs)
+
+
+class CustomAirportGameSmall(AirportGame):
+    def __init__(self) -> None:
+        costs = [1, 2, 3, 7, 2, 1, 2, 3, 4, 4, 4, 2, 1, 2, 3, 1, 1, 1, 8, 2, 2, 3, 4]
         super().__init__(costs)

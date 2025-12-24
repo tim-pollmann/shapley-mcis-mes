@@ -6,7 +6,7 @@ from sklearn.metrics import mean_squared_error
 from shapley_mcis_mes.utils.interfaces import ApproxAlgorithmInterface, GameInterface
 
 
-def run_comparison(
+def run_mse_comparison(
     game: GameInterface,
     ground_truth_shapley_values: np.ndarray,
     algorithms: list[ApproxAlgorithmInterface],
