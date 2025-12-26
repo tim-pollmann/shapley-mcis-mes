@@ -14,7 +14,7 @@ def run_mse_comparison(
     taus: list[int],
     iters_per_tau: int,
 ) -> None:
-    click.echo(f'Start experiment "{experiment_name}".')
+    click.echo(f'Starting experiment "{experiment_name}"...')
 
     mses_per_tau = {algorithm.name(): [] for algorithm in algorithms}
 

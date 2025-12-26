@@ -14,7 +14,7 @@ def run_bias_comparison(
     player: int,
     iters_per_tau: int,
 ) -> None:
-    click.echo(f'Start experiment "{experiment_name}".')
+    click.echo(f'Starting experiment "{experiment_name}"...')
 
     records: list[dict] = []
 

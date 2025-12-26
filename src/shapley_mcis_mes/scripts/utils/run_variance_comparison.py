@@ -21,12 +21,12 @@ def run_variance_comparison(
     player: int,
     n_iters: int,
 ) -> None:
-    click.echo(f'Start experiment "{experiment_name}".')
+    click.echo(f'Starting experiment "{experiment_name}"...')
 
     records: list[dict] = []
 
     for quota, game in _GAMES.items():
-        click.echo(f"Current quota under study: {quota}")
+        click.echo(f"{tau=}")
 
         ground_truth_shapley_values = brute_force_calculation_via_sum(game)
 
