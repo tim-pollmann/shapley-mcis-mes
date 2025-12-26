@@ -19,7 +19,7 @@ def run_variance_comparison(
     experiment_name: str,
     tau: int,
     player: int,
-    n_iters: int = 5,
+    n_iters: int,
 ) -> None:
     click.echo(f'Start experiment "{experiment_name}".')
 
@@ -27,35 +27,47 @@ def run_variance_comparison(
 
     for quota, game in _GAMES.items():
         click.echo(f"Current quota under study: {quota}")
-        true_phi = brute_force_calculation_via_sum(game)
+
+        ground_truth_shapley_values = brute_force_calculation_via_sum(game)
 
         for algorithm in algorithms:
-            name = algorithm.name()
+            theoretical_variance = algorithm.variance(
+                game, tau, ground_truth_shapley_values
+            )
 
-            theor_var = algorithm.variance(game, tau, true_phi)
             records.append(
                 {
                     "quota": quota,
-                    "algorithm": name,
+                    "algorithm": algorithm.name(),
                     "variance_type": "theoretical",
-                    "variance": float(theor_var[player]),
+                    "variance": float(theoretical_variance[player]),
                 }
             )
 
-            runs = []
+            empirical_variances = []
+
             for _ in range(n_iters):
-                est = algorithm.run(game, tau)
-                runs.append((est[player] - true_phi[player]) ** 2)
+                approximated_shapley_values = algorithm.run(game, tau)
+
+                if not np.isnan(approximated_shapley_values).any():
+                    empirical_variances.append(
+                        (
+                            approximated_shapley_values[player]
+                            - ground_truth_shapley_values[player]
+                        )
+                        ** 2
+                    )
 
             records.append(
                 {
                     "quota": quota,
-                    "algorithm": name,
+                    "algorithm": algorithm.name(),
                     "variance_type": "empirical",
-                    "variance": float(np.mean(np.array(runs))),
+                    "variance": float(np.mean(np.array(empirical_variances))),
                 }
             )
 
     df = pd.DataFrame.from_records(records)
     df.to_csv(f"data/{experiment_name}.csv", index=False)
+
     click.echo(f'Finished experiment "{experiment_name}".')

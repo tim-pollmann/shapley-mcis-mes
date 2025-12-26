@@ -12,39 +12,41 @@ def run_mse_comparison(
     algorithms: list[ApproxAlgorithmInterface],
     experiment_name: str,
     taus: list[int],
-    iters_per_tau: int = 250,
+    iters_per_tau: int,
 ) -> None:
     click.echo(f'Start experiment "{experiment_name}".')
 
-    mses = {algorithm.name(): [] for algorithm in algorithms}
+    mses_per_tau = {algorithm.name(): [] for algorithm in algorithms}
 
     for tau in taus:
         click.echo(f"{tau=}")
-        mse_tmp = {algorithm.name(): [] for algorithm in algorithms}
+
+        mses_for_given_tau = {algorithm.name(): [] for algorithm in algorithms}
 
         for _ in range(iters_per_tau):
             for algorithm in algorithms:
-                shapley_values = algorithm.run(game, tau)
+                approximated_shapley_values = algorithm.run(game, tau)
 
-                if not np.isnan(shapley_values).any():
-                    mse = mean_squared_error(
-                        ground_truth_shapley_values, shapley_values
+                if not np.isnan(approximated_shapley_values).any():
+                    mses_for_given_tau[algorithm.name()].append(
+                        mean_squared_error(
+                            ground_truth_shapley_values, approximated_shapley_values
+                        )
                     )
-                    mse_tmp[algorithm.name()].append(mse)
 
         for algorithm in algorithms:
             # make sure that algorithms like S-MCIS have at least half the amount of executions in comparison to all
             # other algorithms
-            if len(mse_tmp[algorithm.name()]) > iters_per_tau // 2:
-                avg_mse = float(np.mean(mse_tmp[algorithm.name()]))
-                mses[algorithm.name()].append(avg_mse)
+            if len(mses_for_given_tau[algorithm.name()]) >= iters_per_tau / 2:
+                avg_mse_for_given_tau = float(
+                    np.mean(mses_for_given_tau[algorithm.name()])
+                )
+                mses_per_tau[algorithm.name()].append(avg_mse_for_given_tau)
             else:
-                mses[algorithm.name()].append(np.nan)
+                mses_per_tau[algorithm.name()].append(np.nan)
 
-    for algorithm in algorithms:
-        mses[algorithm.name()] = mses.pop(algorithm.name())
-
-    df = pd.DataFrame(mses, index=taus)
+    df = pd.DataFrame(mses_per_tau, index=taus)
     df.index.name = "tau"
     df.to_csv(f"data/{experiment_name}.csv")
+
     click.echo(f'Finished experiment "{experiment_name}".')

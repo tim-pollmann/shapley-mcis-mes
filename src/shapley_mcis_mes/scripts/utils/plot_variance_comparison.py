@@ -78,5 +78,6 @@ def plot_variance_comparison(experiment_name: str, player: int) -> None:
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
+
     plt.savefig(f"figures/{experiment_name}.png", dpi=600)
     plt.show()

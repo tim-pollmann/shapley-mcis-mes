@@ -12,7 +12,7 @@ def run_bias_comparison(
     experiment_name: str,
     taus: list[int],
     player: int,
-    iters_per_tau: int = 5000,
+    iters_per_tau: int,
 ) -> None:
     click.echo(f'Start experiment "{experiment_name}".')
 
@@ -20,11 +20,18 @@ def run_bias_comparison(
 
     for tau in taus:
         click.echo(f"{tau=}")
+
         for algorithm in algorithms:
             biases = []
+
             for _ in range(iters_per_tau):
-                estimate = algorithm.run(game, tau)
-                biases.append(estimate[player] - ground_truth_shapley_values[player])
+                approximated_shapley_values = algorithm.run(game, tau)
+
+                if not np.isnan(approximated_shapley_values).any():
+                    biases.append(
+                        approximated_shapley_values[player]
+                        - ground_truth_shapley_values[player]
+                    )
 
             records.append(
                 {
@@ -36,4 +43,5 @@ def run_bias_comparison(
 
     df = pd.DataFrame.from_records(records)
     df.to_csv(f"data/{experiment_name}.csv")
+
     click.echo(f'Finished experiment "{experiment_name}".')
