@@ -1,7 +1,7 @@
 [project]
 name = "shapley-mcis-mes"
 version = "0.0.0"
-requires-python = ">=3.12.7"
+requires-python = ">=3.12"
 authors = [
   {name = "Tim Pollmann"},
   {name = "Jochen Staudacher"}
