@@ -51,8 +51,10 @@ After installation, run one of the following commands to reproduce the figures f
 
 ## Citation
 
-If you use this code, please cite:
+*Will be added after final publication.*
+
+<!-- If you use this code, please cite:
 
 ```sh
 @article{...}
-```
+``` -->
