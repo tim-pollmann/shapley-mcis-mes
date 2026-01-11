@@ -26,7 +26,7 @@ def run_variance_comparison(
     records: list[dict] = []
 
     for quota, game in _GAMES.items():
-        click.echo(f"{tau=}")
+        click.echo(f"{quota=}")
 
         ground_truth_shapley_values = brute_force_calculation_via_sum(game)
 
