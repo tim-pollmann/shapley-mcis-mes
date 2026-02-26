@@ -7,9 +7,9 @@ from shapley_mcis_mes.scripts.utils.run_bias_comparison import run_bias_comparis
 from shapley_mcis_mes.utils.interfaces import ApproxAlgorithmInterface
 
 _ALGORITHMS: list[ApproxAlgorithmInterface] = [OS, MES, SMES]
-_TAUS = [30000, 40000, 50000, 60000, 70000, 80000, 100000]
+_Ts = [30000, 40000, 50000, 60000, 70000, 80000, 100000]
 _PLAYER: int = 0
-_ITERS_PER_TAU = 5000
+_ITERS_PER_T = 5000
 
 
 def default() -> None:
@@ -22,9 +22,9 @@ def default() -> None:
         ground_truth_shapley_values,
         _ALGORITHMS,
         experiment_name,
-        _TAUS,
+        _Ts,
         _PLAYER,
-        _ITERS_PER_TAU,
+        _ITERS_PER_T,
     )
 
     plot_bias_comparison(experiment_name, _PLAYER)

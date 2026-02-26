@@ -10,9 +10,9 @@ def plot_bias_comparison(experiment_name: str, player: int) -> None:
     df = pd.read_csv(f"data/{experiment_name}.csv")
 
     for algorithm, group in df.groupby("algorithm"):
-        group = group.sort_values("tau")
+        group = group.sort_values("T")
         plt.plot(
-            group["tau"],
+            group["T"],
             group["avg_bias"],
             label=algorithm,
         )

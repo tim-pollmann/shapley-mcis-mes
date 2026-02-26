@@ -10,22 +10,22 @@ def run_bias_comparison(
     ground_truth_shapley_values: np.ndarray,
     algorithms: list[ApproxAlgorithmInterface],
     experiment_name: str,
-    taus: list[int],
+    Ts: list[int],
     player: int,
-    iters_per_tau: int,
+    iters_per_T: int,
 ) -> None:
     click.echo(f'Starting experiment "{experiment_name}"...')
 
     records: list[dict] = []
 
-    for tau in taus:
-        click.echo(f"{tau=}")
+    for T in Ts:
+        click.echo(f"{T=}")
 
         for algorithm in algorithms:
             biases = []
 
-            for _ in range(iters_per_tau):
-                approximated_shapley_values = algorithm.run(game, tau)
+            for _ in range(iters_per_T):
+                approximated_shapley_values = algorithm.run(game, T)
 
                 if not np.isnan(approximated_shapley_values).any():
                     biases.append(
@@ -35,7 +35,7 @@ def run_bias_comparison(
 
             records.append(
                 {
-                    "tau": tau,
+                    "T": T,
                     "algorithm": algorithm.name(),
                     "avg_bias": float(np.mean(biases)),
                 }

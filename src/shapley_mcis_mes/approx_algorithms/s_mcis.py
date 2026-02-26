@@ -19,13 +19,14 @@ class SMCIS(ApproxAlgorithmInterface):
 
     @staticmethod
     @override
-    def run(game: GameInterface, tau: int) -> np.ndarray:
+    def run(game: GameInterface, T: int) -> np.ndarray:
+        tau_s = int(np.ceil(T / ((game.n + 1) ** 2)))
+
         N = np.arange(game.n, dtype=int)
-        tau_s = int(np.ceil(tau / ((game.n + 1) ** 2)))
+        n = game.n
 
         n_samples_used = 0
 
-        n = game.n
         stratum_estimators = np.zeros(shape=(n, n))
         stratum_counts = np.zeros(shape=(n, n))
 
@@ -49,7 +50,7 @@ class SMCIS(ApproxAlgorithmInterface):
 
         check_number_of_samples_used(
             n_samples_used,
-            tau,
+            T,
             SMCIS.name(),
             max_deviation=(game.n + 1) ** 2,
         )
@@ -63,7 +64,9 @@ class SMCIS(ApproxAlgorithmInterface):
 
     @staticmethod
     @override
-    def variance(game: GameInterface, tau: int, _: np.ndarray) -> np.ndarray:
+    def variance(game: GameInterface, T: int, _: np.ndarray) -> np.ndarray:
+        tau_s = int(np.ceil(T / ((game.n + 1) ** 2)))
+
         n = game.n
         N = list(range(n))
         squared_values = np.zeros(shape=(n, n))
@@ -84,7 +87,6 @@ class SMCIS(ApproxAlgorithmInterface):
                         1 / comb(n - 1, s) * (game.v(S_with_i) - game.v(S))
                     )
 
-        tau_s = int(np.ceil(tau / ((game.n + 1) ** 2)))
         effective_tau_s = tau_s * (n + 1) / n
         strata_variances = 1 / effective_tau_s * (squared_values - true_values**2)
         variances = np.sum(strata_variances, axis=1) / (n**2)

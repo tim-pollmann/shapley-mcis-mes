@@ -19,13 +19,15 @@ class MES(ApproxAlgorithmInterface):
 
     @staticmethod
     @override
-    def run(game: GameInterface, tau: int) -> np.ndarray:
+    def run(game: GameInterface, T: int) -> np.ndarray:
+        tau = int(np.ceil(T / (game.n + 1)))
+
         shapley_values = np.zeros(game.n)
         N = np.arange(game.n, dtype=int)
 
         n_samples_used = 0
-        tau_s = int(np.ceil(tau / (game.n + 1)))
-        for _ in range(tau_s):
+
+        for _ in range(tau):
             q = np.random.uniform(0, 1)
             S = N[np.random.binomial(1, q, size=game.n) == 1]
             base_eval = game.v(S)
@@ -37,15 +39,15 @@ class MES(ApproxAlgorithmInterface):
                     shapley_values[i] += game.v(np.append(S, i)) - base_eval
                 n_samples_used += 1
 
-        shapley_values = shapley_values / tau_s
+        shapley_values = shapley_values / tau
 
         check_number_of_samples_used(
-            n_samples_used, tau, MES.name(), max_deviation=game.n + 1
+            n_samples_used, T, MES.name(), max_deviation=game.n + 1
         )
 
         return shapley_values
 
     @staticmethod
     @override
-    def variance(game: GameInterface, tau: int, true_values: np.ndarray) -> np.ndarray:
-        return MCIS.variance(game, tau, true_values)
+    def variance(game: GameInterface, T: int, true_values: np.ndarray) -> np.ndarray:
+        return MCIS.variance(game, T, true_values)

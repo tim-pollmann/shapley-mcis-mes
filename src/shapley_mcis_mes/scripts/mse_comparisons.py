@@ -18,9 +18,9 @@ from shapley_mcis_mes.scripts.utils.run_mse_comparison import run_mse_comparison
 from shapley_mcis_mes.utils.interfaces import ApproxAlgorithmInterface
 
 _ALGORITHMS: list[ApproxAlgorithmInterface] = [OS, MES, SMES, MCIS, SMCIS]
-_TAUS_SYNTHETIC_GAMES = [30000, 40000, 50000, 60000, 70000, 80000, 100000]
-_TAUS_EXPLAINABILITY_GAMES = [10000, 15000, 20000, 25000, 30000, 40000, 50000]
-_ITERS_PER_TAU = 250
+_Ts_SYNTHETIC_GAMES = [30000, 40000, 50000, 60000, 70000, 80000, 100000]
+_Ts_EXPLAINABILITY_GAMES = [10000, 15000, 20000, 25000, 30000, 40000, 50000]
+_ITERS_PER_T = 250
 
 
 def ag() -> None:
@@ -33,8 +33,8 @@ def ag() -> None:
         ground_truth_shapley_values,
         _ALGORITHMS,
         experiment_name,
-        _TAUS_SYNTHETIC_GAMES,
-        _ITERS_PER_TAU,
+        _Ts_SYNTHETIC_GAMES,
+        _ITERS_PER_T,
     )
 
     plot_mse_comparison(experiment_name)
@@ -50,8 +50,8 @@ def wvg() -> None:
         ground_truth_shapley_values,
         _ALGORITHMS,
         experiment_name,
-        _TAUS_SYNTHETIC_GAMES,
-        _ITERS_PER_TAU,
+        _Ts_SYNTHETIC_GAMES,
+        _ITERS_PER_T,
     )
 
     plot_mse_comparison(experiment_name)
@@ -67,8 +67,8 @@ def diabetes() -> None:
         ground_truth_shapley_values,
         _ALGORITHMS,
         experiment_name,
-        _TAUS_EXPLAINABILITY_GAMES,
-        _ITERS_PER_TAU,
+        _Ts_EXPLAINABILITY_GAMES,
+        _ITERS_PER_T,
     )
 
     plot_mse_comparison(experiment_name)
@@ -84,8 +84,8 @@ def housing() -> None:
         ground_truth_shapley_values,
         _ALGORITHMS,
         experiment_name,
-        _TAUS_EXPLAINABILITY_GAMES,
-        _ITERS_PER_TAU,
+        _Ts_EXPLAINABILITY_GAMES,
+        _ITERS_PER_T,
     )
 
     plot_mse_comparison(experiment_name)
@@ -101,8 +101,8 @@ def wine() -> None:
         ground_truth_shapley_values,
         _ALGORITHMS,
         experiment_name,
-        _TAUS_EXPLAINABILITY_GAMES,
-        _ITERS_PER_TAU,
+        _Ts_EXPLAINABILITY_GAMES,
+        _ITERS_PER_T,
     )
 
     plot_mse_comparison(experiment_name)

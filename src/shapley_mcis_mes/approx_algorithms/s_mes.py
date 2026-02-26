@@ -16,12 +16,13 @@ class SMES(ApproxAlgorithmInterface):
 
     @staticmethod
     @override
-    def run(game: GameInterface, tau: int) -> np.ndarray:
+    def run(game: GameInterface, T: int) -> np.ndarray:
+        tau = int(np.ceil(T / (game.n + 1)))
+
         shapley_values = np.zeros(game.n)
         N = np.arange(game.n, dtype=int)
-        tau_s = int(np.ceil(tau / (game.n + 1)))
 
-        q_quantiles = [(j / tau_s, (j + 1) / tau_s) for j in range(tau_s)]
+        q_quantiles = [(j / tau, (j + 1) / tau) for j in range(tau)]
         n_samples_used = 0
 
         for lower_bound, upper_bound in q_quantiles:
@@ -36,15 +37,15 @@ class SMES(ApproxAlgorithmInterface):
                     shapley_values[i] += game.v(np.append(S, i)) - base_eval
                 n_samples_used += 1
 
-        shapley_values = shapley_values / tau_s
+        shapley_values = shapley_values / tau
 
         check_number_of_samples_used(
-            n_samples_used, tau, SMES.name(), max_deviation=game.n + 1
+            n_samples_used, T, SMES.name(), max_deviation=game.n + 1
         )
 
         return shapley_values
 
     @staticmethod
     @override
-    def variance(game: GameInterface, tau: int, true_values: np.ndarray) -> np.ndarray:
+    def variance(game: GameInterface, T: int, true_values: np.ndarray) -> np.ndarray:
         raise NotImplementedError()

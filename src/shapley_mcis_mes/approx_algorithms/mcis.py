@@ -20,13 +20,15 @@ class MCIS(ApproxAlgorithmInterface):
 
     @staticmethod
     @override
-    def run(game: GameInterface, tau: int) -> np.ndarray:
+    def run(game: GameInterface, T: int) -> np.ndarray:
+        tau = int(np.ceil(T / (game.n + 1)))
+
         shapley_values = np.zeros(game.n)
         N = np.arange(game.n, dtype=int)
 
         n_samples_used = 0
-        tau_s = int(np.ceil(tau / (game.n + 1)))
-        for _ in range(tau_s):
+
+        for _ in range(tau):
             s = np.random.randint(0, game.n + 1)
             S = np.random.choice(N, size=s, replace=False)
             base_eval = game.v(S)
@@ -39,20 +41,22 @@ class MCIS(ApproxAlgorithmInterface):
                     shapley_values[i] += game.v(np.append(S, i)) - base_eval
                 n_samples_used += 1
 
-        shapley_values = shapley_values / tau_s
+        shapley_values = shapley_values / tau
 
         check_number_of_samples_used(
             n_samples_used,
-            tau,
+            T,
             MCIS.name(),
-            max_deviation=(game.n + 1),
+            max_deviation=game.n + 1,
         )
 
         return shapley_values
 
     @staticmethod
     @override
-    def variance(game: GameInterface, tau: int, true_values: np.ndarray) -> np.ndarray:
+    def variance(game: GameInterface, T: int, true_values: np.ndarray) -> np.ndarray:
+        tau = int(np.ceil(T / (game.n + 1)))
+
         n = game.n
         variances = np.zeros(n)
 
@@ -71,5 +75,4 @@ class MCIS(ApproxAlgorithmInterface):
                         * ((game.v(S_with_i) - v_S) ** 2)
                     )
 
-        tau_s = int(np.ceil(tau / (game.n + 1)))
-        return (variances - (true_values**2)) / tau_s
+        return (variances - (true_values**2)) / tau

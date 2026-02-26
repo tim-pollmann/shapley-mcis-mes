@@ -16,10 +16,11 @@ class OS(ApproxAlgorithmInterface):
 
     @staticmethod
     @override
-    def run(game: GameInterface, tau: int, tau_per_q: int = 2) -> np.ndarray:
+    def run(game: GameInterface, T: int, tau_q: int = 2) -> np.ndarray:
+        Q = int(np.ceil(T / (game.n + 1) / tau_q))
+
         shapley_values = np.zeros(game.n)
         N = np.arange(game.n, dtype=int)
-        Q = int(np.ceil(tau / (game.n + 1) / tau_per_q))
 
         if Q < 2:
             raise ValueError(
@@ -30,7 +31,7 @@ class OS(ApproxAlgorithmInterface):
         n_samples_used = 0
 
         for q in q_quantiles:
-            for _ in range(tau_per_q):
+            for _ in range(tau_q):
                 S = N[np.random.binomial(1, q, size=game.n) == 1]
                 base_eval = game.v(S)
                 n_samples_used += 1
@@ -41,18 +42,18 @@ class OS(ApproxAlgorithmInterface):
                         shapley_values[i] += game.v(np.append(S, i)) - base_eval
                     n_samples_used += 1
 
-        shapley_values = shapley_values / (Q * tau_per_q)
+        shapley_values = shapley_values / (Q * tau_q)
 
         check_number_of_samples_used(
             n_samples_used,
-            tau,
+            T,
             OS.name(),
-            max_deviation=tau_per_q * (game.n + 1),
+            max_deviation=tau_q * (game.n + 1),
         )
 
         return shapley_values
 
     @staticmethod
     @override
-    def variance(game: GameInterface, tau: int, true_values: np.ndarray) -> np.ndarray:
+    def variance(game: GameInterface, T: int, true_values: np.ndarray) -> np.ndarray:
         raise NotImplementedError()
