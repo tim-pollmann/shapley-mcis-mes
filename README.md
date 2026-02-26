@@ -45,9 +45,10 @@ After installation, run one of the following commands to reproduce the figures f
 | ```run-wine-mse-comparison``` | Compares the mean squared errors of all algorithms when approximating the feature importances of a [```RandomForestClassifier```](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html) in the context of the [wine dataset](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_wine.html) (probability of class $0$ only).  |
 | ```run-bias-comparison``` | Compares the biases of *OS*, *MES*, and *S-MES* on an airport game with 23 players. |
 | ```run-variance-comparison``` | Compares the theoretical and empirical variances of *MES*, *MCIS*, and *S-MCIS* on different weighted voting games. |
+| ```run-mle-visualization``` | Visualizes the sampling distribution of *OS*. |
 
 > [!IMPORTANT]
-> The mean squared error comparisons do ```iters_per_tau``` runs per $\tau$ to average the mean squared error at any given $\tau$. When executing ```S-MCIS```, it is not guaranteed that the algorithm runs successfully (compare **Proposition 8** in the paper). Thus, for any $\tau$, we require at least ```iters_per_tau / 2``` successful executions for the average mean squared error to be shown in the final figure. On the other hand, we do not account for that behavior when executing the variance comparison. Instead, we rely on large $\tau$ and small $n$ to assume that the probability of ```S-MCIS``` failing is close to $0$ (again, compare **Proposition 8** in the paper).
+> The mean squared error comparisons do ```iters_per_T``` runs per $T$ to average the mean squared error at any given $T$. When executing ```S-MCIS```, it is not guaranteed that the algorithm runs successfully (compare **Proposition 8** in the paper). Thus, for any $T$, we require at least ```iters_per_T / 2``` successful executions for the average mean squared error to be shown in the final figure. On the other hand, we do not account for that behavior when executing the variance comparison. Instead, we rely on large $T$ and small $n$ to assume that the probability of ```S-MCIS``` failing is close to $0$ (again, compare **Proposition 8** in the paper).
 
 ## Citation
 
