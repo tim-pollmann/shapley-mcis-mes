@@ -48,7 +48,7 @@ After installation, run one of the following commands to reproduce the figures f
 | ```run-mle-visualization``` | Visualizes the sampling distribution of *OS*. |
 
 > [!IMPORTANT]
-> The mean squared error comparisons do ```iters_per_T``` runs per $T$ to average the mean squared error at any given $T$. When executing *S-MCIS*, it is not guaranteed that the algorithm runs successfully (compare **Proposition 8** in the paper). Thus, for any $T$, we require at least ```iters_per_T / 2``` successful executions for the average mean squared error to be shown in the final figure. On the other hand, we do not account for that behavior when executing the variance comparison. Instead, we rely on large $T$ and small $n$ to assume that the probability of *S-MCIS* failing is close to $0$ (again, compare **Proposition 8** in the paper).
+> The mean squared error comparisons do ```iters_per_T``` runs per $T$ to average the mean squared errors at any given $T$. When executing *S-MCIS*, it is not guaranteed that the algorithm runs successfully (compare **Proposition 8** in the paper). Thus, for any $T$, we require at least ```iters_per_T / 2``` successful executions for the average mean squared error to be shown in the final figure. On the other hand, we do not account for that behavior when executing the variance comparison. Instead, we rely on large $T$ and small $n$ to assume that the probability of *S-MCIS* failing is close to $0$ (again, compare **Proposition 8** in the paper).
 
 ## Citation
 
