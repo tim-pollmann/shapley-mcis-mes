@@ -1,7 +1,10 @@
 import pandas as pd
 from matplotlib import pyplot as plt
 
-from shapley_mcis_mes.scripts.utils.update_plt_params import update_plt_params
+from shapley_mcis_mes.scripts.utils.update_plt_params import (
+    format_with_commas,
+    update_plt_params,
+)
 
 
 def plot_bias_comparison(experiment_name: str, player: int) -> None:
@@ -18,6 +21,7 @@ def plot_bias_comparison(experiment_name: str, player: int) -> None:
         )
 
     plt.ticklabel_format(style="sci", axis="y", scilimits=(-1, 1))
+    plt.gca().xaxis.set_major_formatter(plt.FuncFormatter(format_with_commas))
     plt.xlabel(r"overall sample budget $T$")
     plt.ylabel(r"bias of $\hat{\phi}_" + f"{player+1}$")
     plt.legend()
