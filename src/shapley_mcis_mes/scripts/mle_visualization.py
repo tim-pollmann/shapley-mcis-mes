@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import binom
 
+from shapley_mcis_mes.scripts.utils.update_plt_params import update_plt_params
+
 n: int = 21
 Qs: list[int] = [5, 1000]
 tau_q: int = 2
@@ -9,6 +11,8 @@ yticks: dict[int, list[float]] = {5: [0, 0.5, 1, 1.5], 1000: [0, 25, 50, 75]}
 
 
 def mle_visualization() -> None:
+    update_plt_params()
+
     for Q in Qs:
         s_values = np.arange(0, n)
         q_values = np.linspace(0, 1, Q)
