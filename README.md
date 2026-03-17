@@ -1,6 +1,6 @@
 ## Overview
 
-This repository contains the code accompanying the paper **"On importance sampling and multilinear extensions for approximating Shapley values with applications to explainable artificial intelligence"**.
+This repository contains the code accompanying the paper **"On Importance Sampling and Multilinear Extensions for Approximating Shapley Values with Applications to Explainable Artificial Intelligence"**.
 
 All experiments described in the paper can be reproduced using the commands described in the [Usage](#usage) section.
 
