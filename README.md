@@ -56,16 +56,16 @@ If you use this code, please cite:
 
 ```
 @Article{complexities2010007,
-AUTHOR = {Pollmann, Tim and Staudacher, Jochen},
-TITLE = {On Importance Sampling and Multilinear Extensions for Approximating Shapley Values with Applications to Explainable Artificial Intelligence},
-JOURNAL = {Complexities},
-VOLUME = {2},
-YEAR = {2026},
-NUMBER = {1},
-ARTICLE-NUMBER = {7},
-URL = {https://www.mdpi.com/3042-6448/2/1/7},
-ISSN = {3042-6448},
-ABSTRACT = {Shapley values are the most widely used point-valued solution concept for cooperative games and have recently garnered attention for their applicability in explainable machine learning. Due to the complexity of Shapley value computation, users mostly resort to Monte Carlo approximations for large problems. We take a detailed look at an approximation method grounded in multilinear extensions proposed in 2021 under the name “Owen sampling”. We point out why Owen sampling is biased and propose unbiased alternatives based on combining multilinear extensions with stratified sampling and importance sampling. Finally, we discuss empirical results of the presented algorithms for various cooperative games, including real-world explainability scenarios.},
-DOI = {10.3390/complexities2010007}
+    AUTHOR = {Pollmann, Tim and Staudacher, Jochen},
+    TITLE = {On Importance Sampling and Multilinear Extensions for Approximating Shapley Values with Applications to Explainable Artificial Intelligence},
+    JOURNAL = {Complexities},
+    VOLUME = {2},
+    YEAR = {2026},
+    NUMBER = {1},
+    ARTICLE-NUMBER = {7},
+    URL = {https://www.mdpi.com/3042-6448/2/1/7},
+    ISSN = {3042-6448},
+    ABSTRACT = {Shapley values are the most widely used point-valued solution concept for cooperative games and have recently garnered attention for their applicability in explainable machine learning. Due to the complexity of Shapley value computation, users mostly resort to Monte Carlo approximations for large problems. We take a detailed look at an approximation method grounded in multilinear extensions proposed in 2021 under the name “Owen sampling”. We point out why Owen sampling is biased and propose unbiased alternatives based on combining multilinear extensions with stratified sampling and importance sampling. Finally, we discuss empirical results of the presented algorithms for various cooperative games, including real-world explainability scenarios.},
+    DOI = {10.3390/complexities2010007}
 }
 ```
