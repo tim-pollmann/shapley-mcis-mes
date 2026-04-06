@@ -12,7 +12,7 @@ All experiments described in the paper can be reproduced using the commands desc
 | [```src/shapley_mcis_mes/games```](https://github.com/tim-pollmann/shapley-mcis-mes/tree/main/src/shapley_mcis_mes/games) | The cooperative games used for the experiments. |
 | [```src/shapley_mcis_mes/scripts```](https://github.com/tim-pollmann/shapley-mcis-mes/tree/main/src/shapley_mcis_mes/scripts) | The scripts starting the experiments. |
 | [```data```](https://github.com/tim-pollmann/shapley-mcis-mes/tree/main/data) | The results of the experiments saved as CSV files. |
-| [```figures```](https://github.com/tim-pollmann/shapley-mcis-mes/tree/main/figures) | The figures from paper based on the experiment results in the [```data```](https://github.com/tim-pollmann/shapley-mcis-mes/tree/main/data) directory. |
+| [```figures```](https://github.com/tim-pollmann/shapley-mcis-mes/tree/main/figures) | The figures from the paper based on the experiment results in the [```data```](https://github.com/tim-pollmann/shapley-mcis-mes/tree/main/data) directory. |
 
 
 ## Installation
